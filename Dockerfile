@@ -29,7 +29,7 @@ RUN set -x \
     && chown -R daemon:daemon  "${JIRA_INSTALL}/work" \
     && touch -d "@0"           "/opt/atlassian/jira/conf/server.xml" \
     && sed --in-place          "s/java version/openjdk version/g" "${JIRA_INSTALL}/bin/check-java.sh" \
-	&& sed --in-place	"s/JVM_SUPPORT_RECOMMENDED_ARGS=\"\"/JVM_SUPPORT_RECOMMENDED_ARGS=\"-Datlassian.plugins.enable.wait=300\"/g" "{$JIRA_INSTALL}/bin/setenv.sh" \
+	&& sed --in-place	"s/JVM_SUPPORT_RECOMMENDED_ARGS=\"\"/JVM_SUPPORT_RECOMMENDED_ARGS=\"-Datlassian.plugins.enable.wait=300\"/g" "${JIRA_INSTALL}/bin/setenv.sh" \
     && echo -e                 "\njira.home=$JIRA_HOME" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties"
 
 # Use the default unprivileged account. This could be considered bad practice
